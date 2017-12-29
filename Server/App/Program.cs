@@ -71,7 +71,8 @@ namespace App
 						Game.Scene.AddComponent<LocationProxyComponent>();
 						Game.Scene.AddComponent<ActorProxyComponent>();
 						Game.Scene.AddComponent<GateSessionKeyComponent>();
-						break;
+                        Game.Scene.AddComponent<DBProxyComponent>();
+                        break;
 					case AppType.Location:
 						Game.Scene.AddComponent<NetInnerComponent, IPEndPoint>(innerConfig.IPEndPoint);
 						Game.Scene.AddComponent<LocationComponent>();
@@ -85,13 +86,15 @@ namespace App
 						Game.Scene.AddComponent<ActorMessageDispatherComponent>();
 						Game.Scene.AddComponent<ServerFrameComponent>();
 						break;
+                    
 					case AppType.AllServer:
 						Game.Scene.AddComponent<ActorProxyComponent>();
 						Game.Scene.AddComponent<PlayerComponent>();
 						Game.Scene.AddComponent<UnitComponent>();
 						Game.Scene.AddComponent<DBComponent>();
 						Game.Scene.AddComponent<DBProxyComponent>();
-						Game.Scene.AddComponent<LocationComponent>();
+                        Game.Scene.AddComponent<DBCacheComponent>();
+                        Game.Scene.AddComponent<LocationComponent>();
 						Game.Scene.AddComponent<ActorMessageDispatherComponent>();
 						Game.Scene.AddComponent<ActorManagerComponent>();
 						Game.Scene.AddComponent<NetInnerComponent, IPEndPoint>(innerConfig.IPEndPoint);
@@ -107,6 +110,11 @@ namespace App
 						Game.Scene.AddComponent<NetOuterComponent>();
 						Game.Scene.AddComponent<BenchmarkComponent, IPEndPoint>(clientConfig.IPEndPoint);
 						break;
+                    case AppType.DB:
+                        Game.Scene.AddComponent<NetInnerComponent, IPEndPoint>(innerConfig.IPEndPoint);
+                        Game.Scene.AddComponent<DBCacheComponent>();
+                        Game.Scene.AddComponent<DBComponent>();
+                        break;
 					default:
 						throw new Exception($"命令行参数没有设置正确的AppType: {startConfig.AppType}");
 				}
