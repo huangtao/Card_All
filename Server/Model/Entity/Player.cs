@@ -15,7 +15,7 @@
 		
 		public long UnitId { get; set; }
         public PlayerBaseInfo BaseInfo = new PlayerBaseInfo();
-
+        public Session mSession { get; set; }
 		public void Awake(long roleId)
 		{
 			this.RoleId = roleId;

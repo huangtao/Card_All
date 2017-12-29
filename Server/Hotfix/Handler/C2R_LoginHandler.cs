@@ -36,7 +36,7 @@ namespace Hotfix
                 }
 
 				// 随机分配一个Gate
-				StartConfig config = Game.Scene.GetComponent<RealmGateAddressComponent>().GetAddress();
+				StartConfig config = Game.Scene.GetComponent<RealmGateAddressComponent>().GetAddress(roleId);
 				//Log.Debug($"gate address: {MongoHelper.ToJson(config)}");
 				IPEndPoint innerAddress = config.GetComponent<InnerConfig>().IPEndPoint;
 				Session gateSession = Game.Scene.GetComponent<NetInnerComponent>().Get(innerAddress);

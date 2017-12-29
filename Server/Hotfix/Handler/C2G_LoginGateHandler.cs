@@ -21,11 +21,23 @@ namespace Hotfix
 					reply(response);
 					return;
 				}
-				Player player = EntityFactory.Create<Player, long>(info.RoleId);
+                PlayerComponent playerComponet = Game.Scene.GetComponent<PlayerComponent>();
+                Player player = playerComponet.GetByRoleId(info.RoleId);
+                if(null == player)
+                {
+                    player = EntityFactory.Create<Player, long>(info.RoleId);
+                    playerComponet.Add(player);
+                    player.mSession = session;
+                }
+                else
+                {
+                    player.mSession.Dispose();
+                    await player.mSession.GetComponent<ActorComponent>().RemoveLocation();
+                    player.mSession = session;
+                }
                 player.BaseInfo.roleId = info.RoleId;
                 player.BaseInfo.Name = info.Name;
                 player.BaseInfo.Icon = info.Icon;
-                Game.Scene.GetComponent<PlayerComponent>().Add(player);
 				session.AddComponent<SessionPlayerComponent>().Player = player;
 				await session.AddComponent<ActorComponent, IEntityActorHandler>(new GateSessionEntityActorHandler()).AddLocation();
 

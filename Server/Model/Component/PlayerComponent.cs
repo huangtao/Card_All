@@ -24,7 +24,18 @@ namespace Model
 		{
 			Instance = this;
 		}
-		
+		public Player GetByRoleId(long roleId)
+        {
+            foreach(var k in idPlayers)
+            {
+                if(k.Value.RoleId == roleId)
+                {
+                    return k.Value;
+                }
+            }
+
+            return null;
+        }
 		public void Add(Player player)
 		{
 			this.idPlayers.Add(player.Id, player);
