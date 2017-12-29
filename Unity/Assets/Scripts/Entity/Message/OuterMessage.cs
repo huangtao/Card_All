@@ -105,9 +105,11 @@ namespace Model
 	}
 
 	[Message(Opcode.Actor_TestRequest)]
-	public class Actor_TestRequest : AActorRequest
+    [ProtoContract]
+    public class Actor_TestRequest : AActorRequest
 	{
-		public string request;
+        [ProtoMember(1)]
+        public string request;
 	}
 
 	[Message(Opcode.Actor_TestResponse)]
@@ -118,13 +120,16 @@ namespace Model
 
 
 	[Message(Opcode.Actor_TransferRequest)]
-	public class Actor_TransferRequest : AActorRequest
+    [ProtoContract]
+    public class Actor_TransferRequest : AActorRequest
 	{
-		public int MapIndex;
+        [ProtoMember(1)]
+        public int MapIndex;
 	}
 
 	[Message(Opcode.Actor_TransferResponse)]
-	public class Actor_TransferResponse : AActorResponse
+    [ProtoContract]
+    public class Actor_TransferResponse : AActorResponse
 	{
 	}
 
