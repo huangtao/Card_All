@@ -226,8 +226,15 @@ namespace MyEditor
 					GUILayout.Label($"ManagerSystemUrl:");
 					httpConfig.ManagerSystemUrl = EditorGUILayout.TextField(httpConfig.ManagerSystemUrl);
 				}
-
-				DBConfig dbConfig = startConfig.GetComponent<DBConfig>();
+                DBConfig dbConfig = startConfig.GetComponent<DBConfig>();
+                 if (startConfig.AppType == AppType.DB)
+                {
+                    if(null == dbConfig)
+                    {
+                        dbConfig = startConfig.AddComponent<DBConfig>();
+                    }
+                }
+				
 				if (dbConfig != null)
 				{
 					GUILayout.Label($"Connection:");
