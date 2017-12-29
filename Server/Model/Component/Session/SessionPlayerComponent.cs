@@ -12,8 +12,8 @@
 			}
 
 			base.Dispose();
-            await Game.Scene.GetComponent<DBProxyComponent>().Save(Player);
-			Game.Scene.GetComponent<PlayerComponent>()?.Remove(this.Player.Id);
+   //         await Game.Scene.GetComponent<DBProxyComponent>().Save(Player);
+			//Game.Scene.GetComponent<PlayerComponent>()?.Remove(this.Player.Id);
 		}
 	}
 }

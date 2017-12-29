@@ -35,8 +35,12 @@ namespace Hotfix
                 }
                 else
                 {
-                    await player.mSession.GetComponent<ActorComponent>().RemoveLocation();
-                    player.mSession.Dispose();
+                    // await player.mSession.GetComponent<ActorComponent>().RemoveLocation();
+                    if (player.mSession.Id != session.Id)
+                    {
+                        await player.mSession.GetComponent<ActorComponent>().RemoveLocation();
+                        player.mSession.Dispose();
+                    }
                   
                    player.mSession = session;
                 }

@@ -14,7 +14,7 @@ namespace App
 			OneThreadSynchronizationContext contex = new OneThreadSynchronizationContext();
 			SynchronizationContext.SetSynchronizationContext(contex);
 
-			MongoHelper.Init();
+			MongoHelper.Init(); 
 			
 			try
 			{
