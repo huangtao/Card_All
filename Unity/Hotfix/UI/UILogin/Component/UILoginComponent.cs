@@ -34,7 +34,7 @@ namespace Hotfix
 			IPEndPoint connetEndPoint = NetworkHelper.ToIPEndPoint(GlobalConfigComponent.Instance.GlobalProto.Address);
 			session = Game.Scene.GetComponent<NetOuterComponent>().Create(connetEndPoint);
 			string text = this.account.GetComponent<InputField>().text;
-			session.CallWithAction(new C2R_Login() { Account = text, Password = "111111" }, (response) => LoginOK(session, response));
+			session.CallWithAction(new C2R_Login() { Account = text, Password = "111111",channel = 0 }, (response) => LoginOK(session, response));
 		}
 
 		private void LoginOK(Session loginSession, AResponse response)
@@ -72,6 +72,7 @@ namespace Hotfix
 			// 创建Player
 			Player player = Model.EntityFactory.CreateWithId<Player>(g2CLoginGate.PlayerId);
 			PlayerComponent playerComponent = Game.Scene.GetComponent<PlayerComponent>();
+            player.info = g2CLoginGate.info;
 			playerComponent.MyPlayer = player;
 
 			Hotfix.Scene.GetComponent<UIComponent>().Create(UIType.UILobby);

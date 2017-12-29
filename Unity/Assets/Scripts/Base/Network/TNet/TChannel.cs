@@ -167,7 +167,7 @@ namespace Model
 			}
 			catch (Exception e)
 			{
-				Log.Error(e.ToString());
+				Log.Info(e.ToString());
 				this.OnError(this, SocketError.SocketError);
 			}
 		}

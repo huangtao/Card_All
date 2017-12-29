@@ -1,23 +1,24 @@
 ﻿namespace Model
 {
 	[ObjectEvent]
-	public class PlayerEvent : ObjectEvent<Player>, IAwake<string>
+	public class PlayerEvent : ObjectEvent<Player>, IAwake<long>
 	{
-		public void Awake(string account)
+		public void Awake(long roleId)
 		{
-			this.Get().Awake(account);
+			this.Get().Awake(roleId);
 		}
 	}
 
 	public sealed class Player : Entity
 	{
-		public string Account { get; private set; }
+		public long RoleId { get; private set; }
 		
 		public long UnitId { get; set; }
+        public PlayerBaseInfo BaseInfo = new PlayerBaseInfo();
 
-		public void Awake(string account)
+		public void Awake(long roleId)
 		{
-			this.Account = account;
+			this.RoleId = roleId;
 		}
 		
 		public override void Dispose()

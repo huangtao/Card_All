@@ -11,20 +11,26 @@ namespace Hotfix
 			G2C_LoginGate response = new G2C_LoginGate();
 			try
 			{
-				string account = Game.Scene.GetComponent<GateSessionKeyComponent>().Get(message.Key);
-				if (account == null)
+                GateSessionKeyComponent.GateSessionInfo info = Game.Scene.GetComponent<GateSessionKeyComponent>().Get(message.Key);
+
+              
+				if (info == null)
 				{
 					response.Error = ErrorCode.ERR_ConnectGateKeyError;
 					response.Message = "Gate key验证失败!";
 					reply(response);
 					return;
 				}
-				Player player = EntityFactory.Create<Player, string>(account);
-				Game.Scene.GetComponent<PlayerComponent>().Add(player);
+				Player player = EntityFactory.Create<Player, long>(info.RoleId);
+                player.BaseInfo.roleId = info.RoleId;
+                player.BaseInfo.Name = info.Name;
+                player.BaseInfo.Icon = info.Icon;
+                Game.Scene.GetComponent<PlayerComponent>().Add(player);
 				session.AddComponent<SessionPlayerComponent>().Player = player;
 				await session.AddComponent<ActorComponent, IEntityActorHandler>(new GateSessionEntityActorHandler()).AddLocation();
 
 				response.PlayerId = player.Id;
+                response.info = player.BaseInfo;
 				reply(response);
 			}
 			catch (Exception e)

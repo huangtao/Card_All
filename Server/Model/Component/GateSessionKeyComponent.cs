@@ -4,19 +4,30 @@ namespace Model
 {
 	public class GateSessionKeyComponent : Component
 	{
-		private readonly Dictionary<long, string> sessionKey = new Dictionary<long, string>();
+        public class GateSessionInfo
+        {
+            public long RoleId;
+            public string Name;
+            public string Icon;
+        }
+		private readonly Dictionary<long, GateSessionInfo> sessionKey = new Dictionary<long, GateSessionInfo>();
 		
-		public void Add(long key, string account)
+		public void Add(long key, long roleId,string szName,string szIcon)
 		{
-			this.sessionKey.Add(key, account);
+            GateSessionInfo info = new GateSessionInfo();
+            info.RoleId = roleId;
+            info.Name = szName;
+            info.Icon = szIcon;
+
+            this.sessionKey.Add(key, info);
 			this.TimeoutRemoveKey(key);
 		}
 
-		public string Get(long key)
+		public GateSessionInfo Get(long key)
 		{
-			string account = null;
-			this.sessionKey.TryGetValue(key, out account);
-			return account;
+            GateSessionInfo info = null;
+			this.sessionKey.TryGetValue(key, out info);
+			return info;
 		}
 
 		public void Remove(long key)

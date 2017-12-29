@@ -14,12 +14,26 @@ namespace Hotfix
 			R2C_Login response = new R2C_Login();
 			try
 			{
-				//if (message.Account != "abcdef" || message.Password != "111111")
-				//{
-				//	response.Error = ErrorCode.ERR_AccountOrPasswordError;
-				//	reply(response);
-				//	return;
-				//}
+                long roleId = 0;
+                string szName = string.Empty;
+                string szIcon = string.Empty;
+                if(message.channel == 0)
+                {
+                    try
+                    {
+                        roleId = System.Convert.ToInt64(message.Account);
+                        szName = message.Account;
+                    }
+                    catch
+                    {
+
+                    }
+                    if (message.channel == 0)
+                    {
+
+                    }
+
+                }
 
 				// 随机分配一个Gate
 				StartConfig config = Game.Scene.GetComponent<RealmGateAddressComponent>().GetAddress();
@@ -28,7 +42,7 @@ namespace Hotfix
 				Session gateSession = Game.Scene.GetComponent<NetInnerComponent>().Get(innerAddress);
 
 				// 向gate请求一个key,客户端可以拿着这个key连接gate
-				G2R_GetLoginKey g2RGetLoginKey = await gateSession.Call<G2R_GetLoginKey>(new R2G_GetLoginKey() {Account = message.Account});
+				G2R_GetLoginKey g2RGetLoginKey = await gateSession.Call<G2R_GetLoginKey>(new R2G_GetLoginKey() {roleId = roleId,icon=szIcon,mName = szName});
 
 				string outerAddress = config.GetComponent<OuterConfig>().IPEndPoint2.ToString();
 

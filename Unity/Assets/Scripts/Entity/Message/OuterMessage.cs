@@ -68,7 +68,13 @@ namespace Model
 
 		[ProtoMember(2)]
 		public string Password;
-	}
+
+        [ProtoMember(3)]
+        public int channel;
+
+        [ProtoMember(4)]
+        public string reverse;
+    }
 
 	[ProtoContract]
 	[Message(Opcode.R2C_Login)]
@@ -95,7 +101,9 @@ namespace Model
 	{
 		[ProtoMember(1)]
 		public long PlayerId;
-	}
+        [ProtoMember(2)]
+       public PlayerBaseInfo info;
+    }
 
 
 	[Message(Opcode.Actor_Test)]
@@ -160,7 +168,21 @@ namespace Model
 		public int Z;
 	}
 
-	[ProtoContract]
+
+    [ProtoContract]
+    public class PlayerBaseInfo
+    {
+        [ProtoMember(1)]
+        public long roleId;
+        [ProtoMember(2)]
+        public string Name;
+        [ProtoMember(3)]
+        public Dictionary<int, long> Money;
+        [ProtoMember(4)]
+        public string Icon;
+    }
+
+    [ProtoContract]
 	[Message(Opcode.Actor_CreateUnits)]
 	public class Actor_CreateUnits : AActorMessage
 	{
