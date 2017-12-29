@@ -168,8 +168,9 @@ namespace Model
 		public int Z;
 	}
 
-
+    [BsonIgnoreExtraElements]
     [ProtoContract]
+    [BsonKnownTypes(typeof(PlayerBaseInfo))]
     public class PlayerBaseInfo
     {
         [ProtoMember(1)]
@@ -177,7 +178,7 @@ namespace Model
         [ProtoMember(2)]
         public string Name;
         [ProtoMember(3)]
-        public Dictionary<int, long> Money;
+        public int Money;
         [ProtoMember(4)]
         public string Icon;
     }

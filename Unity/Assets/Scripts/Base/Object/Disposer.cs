@@ -5,7 +5,8 @@ namespace Model
 {
 	[BsonKnownTypes(typeof(Entity))]
 	[BsonKnownTypes(typeof(Component))]
-	public abstract class Disposer : Object, IDisposable
+    [BsonKnownTypes(typeof(Player))]
+    public abstract class Disposer : Object, IDisposable
 	{
 		[BsonIgnoreIfDefault]
 		[BsonDefaultValue(1L)]

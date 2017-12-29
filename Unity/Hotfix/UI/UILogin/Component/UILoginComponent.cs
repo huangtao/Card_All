@@ -40,8 +40,12 @@ namespace Hotfix
 		private void LoginOK(Session loginSession, AResponse response)
 		{
 			loginSession.Dispose();
-
-			R2C_Login r2CLogin = (R2C_Login) response;
+            SessionComponent sc = Game.Scene.GetComponent<SessionComponent>();
+            if(null != sc)
+            {
+                return;
+            }
+             R2C_Login r2CLogin = (R2C_Login) response;
 			if (r2CLogin.Error != ErrorCode.ERR_Success)
 			{
 				Log.Error(r2CLogin.Error.ToString());

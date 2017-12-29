@@ -14,28 +14,13 @@ namespace Model
 	
 	public class PlayerComponent : Component
 	{
-		public static PlayerComponent Instance { get; private set; }
-
-		public Player MyPlayer;
-		
+		public static PlayerComponent Instance { get; private set; }	
 		private readonly Dictionary<long, Player> idPlayers = new Dictionary<long, Player>();
 
 		public void Awake()
 		{
 			Instance = this;
 		}
-		public Player GetByRoleId(long roleId)
-        {
-            foreach(var k in idPlayers)
-            {
-                if(k.Value.RoleId == roleId)
-                {
-                    return k.Value;
-                }
-            }
-
-            return null;
-        }
 		public void Add(Player player)
 		{
 			this.idPlayers.Add(player.Id, player);
@@ -49,7 +34,14 @@ namespace Model
 
 		public void Remove(long id)
 		{
-			this.idPlayers.Remove(id);
+            Player player = null;
+            if(this.idPlayers.TryGetValue(id,out player))
+            {
+                this.idPlayers.Remove(id);
+                player.Dispose();
+            }
+			
+
 		}
 
 		public int Count

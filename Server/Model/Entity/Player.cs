@@ -1,33 +1,34 @@
-﻿namespace Model
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace Model
 {
 	[ObjectEvent]
-	public class PlayerEvent : ObjectEvent<Player>, IAwake<long>
+	public class PlayerEvent : ObjectEvent<Player>, IAwake
 	{
-		public void Awake(long roleId)
+		public void Awake()
 		{
-			this.Get().Awake(roleId);
+			this.Get().Awake();
 		}
 	}
-
-	public sealed class Player : Entity
+    [BsonIgnoreExtraElements]
+    public sealed class Player : Entity
 	{
-		public long RoleId { get; private set; }
-		
-		public long UnitId { get; set; }
+        public long RoleId;
+        public long UnitId;
         public PlayerBaseInfo BaseInfo = new PlayerBaseInfo();
+        [BsonIgnore]
         public Session mSession { get; set; }
-		public void Awake(long roleId)
+		public void Awake()
 		{
-			this.RoleId = roleId;
+            RoleId = this.Id;
 		}
 		
-		public override void Dispose()
+		public override  void Dispose()
 		{
 			if (this.Id == 0)
 			{
 				return;
 			}
-
 			base.Dispose();
 		}
 	}
