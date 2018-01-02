@@ -135,8 +135,12 @@ namespace Hotfix
 				ui.Dispose();
 			}
 		}
-
-		public UI Get(UIType type)
+        public Transform GetCanvas(UI ui)
+        {
+            string cavasName = ui.GameObject.GetComponent<CanvasConfig>().CanvasName;
+            return this.Root.Get<GameObject>(cavasName).transform;
+        }
+        public UI Get(UIType type)
 		{
 			UI ui;
 			this.uis.TryGetValue(type, out ui);

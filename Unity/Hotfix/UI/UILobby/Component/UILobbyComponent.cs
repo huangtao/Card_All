@@ -19,7 +19,7 @@ namespace Hotfix
 
         RawImage icon;
         Text ID, Name;
-        LandlordCreateRoom mCreatRoom = new LandlordCreateRoom();
+       // LandlordCreateRoom mCreatRoom = new LandlordCreateRoom();
 		public void Awake()
 		{
 			ReferenceCollector rc = this.GetEntity<UI>().GameObject.GetComponent<ReferenceCollector>();
@@ -29,11 +29,13 @@ namespace Hotfix
             PlayerComponent playerComponent = Game.Scene.GetComponent<PlayerComponent>();
             ID.text =$"ID:{playerComponent.MyPlayer.info.roleId}";
             Name.text = $"{playerComponent.MyPlayer.info.roleId}";
-            mCreatRoom.Awake(rc.Get<GameObject>("LandlordCreateRoom").GetComponent<ReferenceCollector>());
+            this.GetEntity<UI>().AddComponent<LandlordCreateRoomComponent>();
+           // mCreatRoom.Awake(rc.Get<GameObject>("LandlordCreateRoom").GetComponent<ReferenceCollector>());
             Button btn_Landlord= rc.Get<GameObject>("btn_Landlord").GetComponent<Button>();
             btn_Landlord.onClick.Add(() =>
             {
-                mCreatRoom.Show();
+                this.GetEntity<UI>().GetComponent<LandlordCreateRoomComponent>().Show();
+               // mCreatRoom.Show();
             });
             //GameObject sendBtn = rc.Get<GameObject>("Send");
             //GameObject sendRpcBtn = rc.Get<GameObject>("SendRpc");

@@ -31,6 +31,7 @@ namespace Hotfix
 	    public void Remove(UIType type)
 	    {
 		    Game.Scene.GetComponent<ResourcesComponent>().UnloadBundle($"{type}.unity3d");
+
 		}
     }
 }
