@@ -5,3 +5,4 @@
 { "_t" : "StartConfig", "_id" : NumberLong("96832366182401"), "components" : [{ "_t" : "InnerConfig", "Host" : "127.0.0.1", "Port" : 20005 }, { "_t" : "OuterConfig", "Host" : "127.0.0.1", "Port" : 10006, "Host2" : "127.0.0.1" }, { "_t" : "DBConfig", "ConnectionString" : "mongodb://127.0.0.1:27017", "DBName" : "game" }], "AppId" : 7, "AppType" : "DB", "ServerIP" : "*" }
 { "_t" : "StartConfig", "_id" : NumberLong("98565723062316"), "components" : [{ "_t" : "InnerConfig", "Host" : "127.0.0.1", "Port" : 20006 }], "AppId" : 8, "AppType" : "Map", "ServerIP" : "*" }
 { "_t" : "StartConfig", "_id" : NumberLong("98565723062316"), "components" : [{ "_t" : "InnerConfig", "Host" : "127.0.0.1", "Port" : 20007 }], "AppId" : 9, "AppType" : "Map", "ServerIP" : "*" }
+{ "_t" : "StartConfig", "_id" : NumberLong("98565862653976"), "components" : [{ "_t" : "InnerConfig", "Host" : "127.0.0.1", "Port" : 20010 }], "AppId" : 10, "AppType" : "Match", "ServerIP" : "*" }

@@ -239,4 +239,10 @@ namespace Model
 	public class R2C_Ping: AResponse
 	{
 	}
+
+    [ProtoContract]
+    [Message(Opcode.C2G_CreateLandlordRoom)]
+    public class C2G_CreateLandlordRoom : AMessage
+    {
+    }
 }

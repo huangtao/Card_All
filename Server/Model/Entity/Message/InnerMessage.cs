@@ -335,4 +335,21 @@ namespace Model
 		public long UnitId;
 		public int Count;
 	}
+
+
+    [Message(Opcode.G2Match_CreateRoomRequest)]
+    [BsonIgnoreExtraElements]
+    public class G2Match_CreateRoomRequest : ARequest
+    {
+      
+    }
+
+
+    [Message(Opcode.Match2G_CreateRoomResponse)]
+    [BsonIgnoreExtraElements]
+    public class Match2G_CreateRoomResponse : AResponse
+    {
+        public long roomId;
+        
+    }
 }

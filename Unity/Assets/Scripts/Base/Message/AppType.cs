@@ -14,13 +14,13 @@ namespace Model
 		DB = 1 << 4,
 		Location = 1 << 5,
 		Map = 1 << 6,
-
+        Match = 1<<7,
 		Robot = 1 << 29,
 		Benchmark = 1 << 30,
 		Client = 1 << 31,
 
 		// 7
-		AllServer = Manager | Realm | Gate | Http | DB | Location | Map
+		AllServer = Manager | Realm | Gate | Http | DB | Location | Map| Match
 	}
 
 	public static class AppTypeHelper

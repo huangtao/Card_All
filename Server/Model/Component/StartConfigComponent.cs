@@ -25,8 +25,9 @@ namespace Model
 		public StartConfig RealmConfig { get; private set; }
 
 		public StartConfig LocationConfig { get; private set; }
+        public StartConfig MatchConfig { get; private set; }
 
-		public List<StartConfig> MapConfigs { get; private set; }
+        public List<StartConfig> MapConfigs { get; private set; }
 
 		public List<StartConfig> GateConfigs { get; private set; }
 
@@ -53,8 +54,11 @@ namespace Model
 					{
 						this.RealmConfig = startConfig;
 					}
-
-					if (startConfig.AppType.Is(AppType.Location))
+                    if (startConfig.AppType.Is(AppType.Match))
+                    {
+                        this.MatchConfig = startConfig;
+                    }
+                    if (startConfig.AppType.Is(AppType.Location))
 					{
 						this.LocationConfig = startConfig;
 					}

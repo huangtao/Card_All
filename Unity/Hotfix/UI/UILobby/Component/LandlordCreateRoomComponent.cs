@@ -37,6 +37,13 @@ namespace Hotfix
             {
                 Hide();
             });
+
+            Button btn_ok = mRc.Get<GameObject>("btn_ok").GetComponent<Button>();
+            btn_ok.onClick.Add(() =>
+            {
+                SessionComponent.Instance.Session.Send(new C2G_CreateLandlordRoom());
+            });
+
         }
         public override void Dispose()
         {

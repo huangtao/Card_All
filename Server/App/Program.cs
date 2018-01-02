@@ -77,6 +77,12 @@ namespace App
 						Game.Scene.AddComponent<NetInnerComponent, IPEndPoint>(innerConfig.IPEndPoint);
 						Game.Scene.AddComponent<LocationComponent>();
 						break;
+                    case AppType.Match:
+                        {
+                            Game.Scene.AddComponent<NetInnerComponent, IPEndPoint>(innerConfig.IPEndPoint);
+                            Game.Scene.AddComponent<MatchComponent>();
+                        }
+                        break;
 					case AppType.Map:
 						Game.Scene.AddComponent<NetInnerComponent, IPEndPoint>(innerConfig.IPEndPoint);
 						Game.Scene.AddComponent<ActorManagerComponent>();
