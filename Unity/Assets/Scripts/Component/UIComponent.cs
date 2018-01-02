@@ -107,6 +107,12 @@ namespace Model
 			}
 		}
 
+        public Transform GetCanvas(UI ui)
+        {
+            string cavasName = ui.GameObject.GetComponent<CanvasConfig>().CanvasName;
+            return this.Root.Get<GameObject>(cavasName).transform;
+        }
+
 		public void Add(UIType type, UI ui)
 		{
 			this.uis.Add(type, ui);
